@@ -2,6 +2,7 @@ import ArticleCard from "./ArticleCard";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { getArticles } from "../api";
+import { Link } from "react-router";
 import "../styles/articleList.css";
 
 function ArticleList() {
@@ -41,7 +42,9 @@ function ArticleList() {
   return (
     <div className="article-list-container">
       {articles.map((article) => (
-        <ArticleCard key={article.article_id} article={article} />
+        <Link to={`/article/${article.article_id}`} key={article.article_id}>
+          <ArticleCard article={article} />
+        </Link>
       ))}
     </div>
   );

@@ -11,3 +11,9 @@ export const getArticles = (searchTerm = {}) => {
       return response.data.articles;
     });
 };
+
+export const getArticlebyArticleId = (articleId) => {
+  return ncNewsApi.get("/articles/" + articleId).then((response) => {
+    return response.data.article;
+  });
+};

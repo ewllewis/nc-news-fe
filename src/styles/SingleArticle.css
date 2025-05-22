@@ -1,87 +1,88 @@
 .single-article-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 1rem;
+  gap: 2rem;
   width: 100%;
-  padding: 0.5rem;
+  padding: 1rem;
   box-sizing: border-box;
 }
 
 .single-article-main {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  gap: 0.5rem;
-  width: 100%;
+  gap: 2rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   padding: 1rem;
+  flex-wrap: wrap;
 }
 
 .single-article-data {
+  flex: 3;
   display: flex;
   flex-direction: column;
-  width: 80%;
-}
-
-.single-article-img {
-  height: 200px;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.single-article-img img {
-  max-height: 100%;
-  width: 100%;
-  object-fit: cover;
-  border-radius: 0.75rem;
-  padding: 0.5rem;
+  gap: 1rem;
+  min-width: 250px;
 }
 
 .single-article-title {
-  display: flex;
-  justify-content: flex-start;
-  font-size: 1.1rem;
+  font-size: 1.5rem;
   font-weight: bold;
   color: white;
-  white-space: normal;
-  word-break: break-word;
-  padding: 0.5rem;
+}
+
+.single-article-img {
+  width: 100%;
+  max-height: 300px;
+  overflow: hidden;
+  border-radius: 0.75rem;
+}
+
+.single-article-img img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 0.75rem;
 }
 
 .single-article-body {
-  padding: 0.5rem;
-}
-
-.single-article-metadata {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: flex-start;
-  gap: 0.4rem;
-  text-align: right;
   font-size: 1rem;
   color: white;
-  height: auto;
-  padding-top: 0.25rem;
-  height: 80px;
+  line-height: 1.6;
+  white-space: pre-line;
 }
 
 .single-article-votes-comments {
   display: flex;
   justify-content: flex-end;
-  gap: 1rem;
-  font-size: 1rem;
+  gap: 2rem;
+  font-size: 0.95rem;
   color: white;
-  margin-top: auto;
-  padding: 0.5rem;
 }
 
 .single-article-divider {
   width: 1px;
-  height: 20rem;
-  background-color: #94a3b8;
-  opacity: 0.3;
+  background-color: #e2e8f0;
   margin: 0 1rem;
-  flex-shrink: 0;
-  justify-content: flex-end;
+}
+
+.single-article-metadata {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: white;
+  align-items: flex-end;
+  justify-content: flex-start;
+  min-width: 150px;
+}
+
+.article-card-metadata {
+  padding: 0.25rem 0;
+}
+
+.single-article-comments {
+  margin-top: 0.1rem;
 }

@@ -1,47 +1,49 @@
-import ArticleCard from "./ArticleCard";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router";
-import { getArticles } from "../api";
-import { Link } from "react-router";
 import "../styles/articleList.css";
 
+import { useParams, Link } from "react-router";
+import { useMemo } from "react";
+
+import { getArticles } from "../api";
+
+import ArticleCard from "./ArticleCard";
+import useLoading from "../hooks/useLoading";
+
 function ArticleList() {
-  let { topic } = useParams();
-  const [articles, setArticles] = useState([]);
-
-  useEffect(() => {
-    if (topic === "new") {
-      getArticles().then((articles) => {
-        setArticles(sortforNewArticles(articles));
-      });
-    } else if (topic === "popular") {
-      getArticles().then((articles) => {
-        setArticles(sortforPopularArticles(articles));
-      });
-    } else {
-      getArticles({ topic }).then((articles) => {
-        setArticles(articles);
-      });
-    }
+  const { topic } = useParams();
+  const searchTerm = useMemo(() => {
+    return topic !== "new" && topic !== "popular" ? { topic } : {};
   }, [topic]);
+  const {
+    isLoading,
+    error,
+    data: articles = [],
+  } = useLoading(getArticles, searchTerm);
 
-  function sortforNewArticles(articles) {
-    const newArticles = [...articles]
+  function sortforNewArticles(articlesList) {
+    return [...articlesList]
       .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
       .slice(0, 10);
-    return newArticles;
   }
 
-  function sortforPopularArticles(articles) {
-    const popularArticles = [...articles]
-      .sort((a, b) => b.votes - a.votes)
-      .slice(0, 10);
-    return popularArticles;
+  function sortforPopularArticles(articlesList) {
+    return [...articlesList].sort((a, b) => b.votes - a.votes).slice(0, 10);
   }
+
+  let displayedArticles = [];
+  if (topic === "new") {
+    displayedArticles = sortforNewArticles(articles);
+  } else if (topic === "popular") {
+    displayedArticles = sortforPopularArticles(articles);
+  } else {
+    displayedArticles = articles;
+  }
+
+  if (isLoading) return <p>Loading articles...</p>;
+  if (error) return <p>{error.message}</p>;
 
   return (
     <div className="article-list-container">
-      {articles.map((article) => (
+      {displayedArticles.map((article) => (
         <Link to={`/article/${article.article_id}`} key={article.article_id}>
           <ArticleCard article={article} />
         </Link>

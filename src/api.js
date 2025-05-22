@@ -25,3 +25,11 @@ export const getCommentsbyArticleId = (articleId) => {
       return response.data.comments;
     });
 };
+
+export const patchArticleVotes = (articleId, voteIncrement) => {
+  return ncNewsApi
+    .patch("/articles/" + articleId, { inc_votes: voteIncrement })
+    .then((response) => {
+      return response.data.article;
+    });
+};

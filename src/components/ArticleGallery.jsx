@@ -1,14 +1,12 @@
-import ArticleGalleryCard from "./ArticleGalleryCard";
 import "../styles/articleGallery.css";
-import { Link } from "react-router";
+
+import ArticleGalleryCard from "./ArticleGalleryCard";
 
 function ArticleGallery({ articles }) {
   return (
     <div className="article-gallery-container">
       {articles.map((article) => (
-        <Link to={`/article/${article.article_id}`} key={article.article_id}>
-          <ArticleGalleryCard key={article.article_id} article={article} />
-        </Link>
+        <ArticleGalleryCard key={article.article_id} article={article} />
       ))}
     </div>
   );

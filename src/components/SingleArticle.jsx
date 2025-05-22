@@ -1,47 +1,80 @@
-import { useParams } from "react-router";
-import { getArticlebyArticleId } from "../api";
-import { useEffect, useState } from "react";
 import "../styles/SingleArticle.css";
+
+import { useParams } from "react-router";
+import { getArticlebyArticleId, patchArticleVotes } from "../api";
+
 import CommentList from "./CommentList";
+import useLoading from "../hooks/useLoading";
+import useVotes from "../hooks/useVotes";
 
 function SingleArticle() {
   let { articleid } = useParams();
-  const [article, setArticle] = useState({});
+  const {
+    isLoading,
+    error,
+    data: article = {},
+  } = useLoading(getArticlebyArticleId, articleid);
 
-  useEffect(() => {
-    getArticlebyArticleId(articleid).then((article) => {
-      setArticle(article);
-    });
-  }, []);
+  const { votes, vote, isVoting, hasVoted } = useVotes(
+    article?.votes ?? 0,
+    article?.article_id ?? 0
+  );
+
+  if (isLoading) return <p>Loading article...</p>;
+  if (error) return <p>{error.message}</p>;
 
   return (
-    <div className="single-article-container">
-      <div className="single-article-main">
-        <div className="single-article-data">
-          <div className="single-article-title">{article.title}</div>
+    <article className="single-article-container">
+      <header className="single-article-main">
+        <section className="single-article-data">
+          <h1 className="single-article-title">{article.title}</h1>
 
-          <div className="single-article-img">
+          <figure className="single-article-img">
             <img src={article.article_img_url} alt={article.title} />
-          </div>
-          <div className="single-article-body">{article.body}</div>
-          <div className="single-article-votes-comments">
-            <div>Votes: {article.votes}</div>
-            <div>Comments: {article.comment_count}</div>
-          </div>
-        </div>
-        <div className="single-article-divider" />
-        <div className="single-article-metadata">
-          <div className="article-card-metadata">#{article.topic}</div>
-          <div className="article-card-metadata">
-            {new Date(article.created_at).toLocaleDateString()}
-          </div>
-          <div className="article-card-metadata">@{article.author}</div>
-        </div>
-      </div>
-      <div className="single-article-comments">
+          </figure>
+
+          <section className="single-article-body">
+            <p>{article.body}</p>
+          </section>
+        </section>
+
+        <hr className="single-article-divider" />
+
+        <aside className="single-article-right">
+          <section className="single-article-metadata">
+            <p className="article-card-metadata">#{article.topic}</p>
+            <p className="article-card-metadata">
+              {new Date(article.created_at).toLocaleDateString()}
+            </p>
+            <p className="article-card-metadata">@{article.author}</p>
+          </section>
+
+          <section className="single-article-votes-comments">
+            <div className="vote-comment-counts">
+              <p>
+                <strong>Votes:</strong> {votes}
+              </p>
+              <p>
+                <strong>Comments:</strong> {article.comment_count}
+              </p>
+            </div>
+
+            <section className="article-actions">
+              <button onClick={() => vote(1)} disabled={isVoting || hasVoted}>
+                👍
+              </button>
+              <button onClick={() => vote(-1)} disabled={isVoting || hasVoted}>
+                👎
+              </button>
+            </section>
+          </section>
+        </aside>
+      </header>
+
+      <section className="single-article-comments">
         <CommentList articleid={articleid} />
-      </div>
-    </div>
+      </section>
+    </article>
   );
 }
 

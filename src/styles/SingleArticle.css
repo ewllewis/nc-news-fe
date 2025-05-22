@@ -1,3 +1,14 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
 .single-article-container {
   display: flex;
   flex-direction: column;
@@ -53,36 +64,65 @@
   white-space: pre-line;
 }
 
-.single-article-votes-comments {
-  display: flex;
-  justify-content: flex-end;
-  gap: 2rem;
-  font-size: 0.95rem;
-  color: white;
-}
-
 .single-article-divider {
   width: 1px;
   background-color: #e2e8f0;
   margin: 0 1rem;
 }
 
-.single-article-metadata {
-  flex: 1;
+.single-article-right {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  align-items: flex-end;
+  gap: 1rem;
+  padding-right: 1rem;
+}
+
+.single-article-metadata {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.75rem;
   font-size: 0.9rem;
   color: white;
-  align-items: flex-end;
-  justify-content: flex-start;
-  min-width: 150px;
 }
 
 .article-card-metadata {
-  padding: 0.25rem 0;
+  margin: 0;
+  text-align: right;
+  white-space: nowrap;
 }
 
-.single-article-comments {
-  margin-top: 0.1rem;
+.single-article-votes-comments {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.vote-comment-counts {
+  text-align: right;
+  width: 100%;
+}
+
+.article-actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.article-actions button {
+  padding: 0.4rem 0.8rem;
+  font-size: 1.2rem;
+  border: none;
+  background: #eee;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.article-actions button:hover {
+  background-color: #ddd;
 }

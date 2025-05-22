@@ -1,10 +1,15 @@
 import "../styles/navbar.css";
+
 import { Link } from "react-router";
 
 function NavBar() {
   return (
-    <div className="nav-bar-wrapper">
-      <div className="horizontal-divider" />
+    <nav
+      className="nav-bar-wrapper"
+      role="navigation"
+      aria-label="Main navigation"
+    >
+      <hr className="horizontal-divider" />
       <div className="nav-bar-container">
         <div className="nav-bar-left-section">
           <Link to="/articles/new">
@@ -27,8 +32,8 @@ function NavBar() {
           </Link>
         </div>
       </div>
-      <div className="horizontal-divider" />
-    </div>
+      <hr className="horizontal-divider" />
+    </nav>
   );
 }
 

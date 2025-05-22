@@ -1,16 +1,19 @@
-import CommentCard from "./CommentCard";
-import { getCommentsbyArticleId } from "../api";
-import { useState, useEffect } from "react";
 import "../styles/CommentList.css";
 
-function CommentList({ articleid }) {
-  const [comments, setComments] = useState([]);
+import { getCommentsbyArticleId } from "../api";
 
-  useEffect(() => {
-    getCommentsbyArticleId(articleid).then((comments) => {
-      setComments(comments);
-    });
-  }, []);
+import CommentCard from "./CommentCard";
+import useLoading from "../hooks/useLoading";
+
+function CommentList({ articleid }) {
+  const {
+    isLoading,
+    error,
+    data: comments = [],
+  } = useLoading(getCommentsbyArticleId, articleid);
+
+  if (isLoading) return <p>Loading article...</p>;
+  if (error) return <p>{error.message}</p>;
   return (
     <div className="comment-list-container">
       {comments.map((comment) => (

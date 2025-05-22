@@ -1,16 +1,20 @@
-import ArticleGallery from "./ArticleGallery";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+
 import { getArticles } from "../api";
 
-function Home() {
-  const [articles, setArticles] = useState([]);
-  const [searchTerm, setSearchTerm] = useState({ topic: "" });
+import ArticleGallery from "./ArticleGallery";
+import useLoading from "../hooks/useLoading";
 
-  useEffect(() => {
-    getArticles(searchTerm).then((articles) => {
-      setArticles(articles);
-    });
-  }, []);
+function Home() {
+  const [searchTerm] = useState({ topic: "" });
+  const {
+    isLoading,
+    error,
+    data: articles,
+  } = useLoading(getArticles, searchTerm);
+
+  if (isLoading) return <p>Loading articles...</p>;
+  if (error) return <p>{error.message}</p>;
 
   const newArticles = [...articles]
     .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))

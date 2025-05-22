@@ -33,3 +33,26 @@ export const patchArticleVotes = (articleId, voteIncrement) => {
       return response.data.article;
     });
 };
+
+export const patchCommentVotes = (articleId, voteIncrement) => {
+  return ncNewsApi
+    .patch("/comments/" + articleId, { inc_votes: voteIncrement })
+    .then((response) => {
+      return response.data.article;
+    });
+};
+
+export const postComment = (articleId, { username, body }) => {
+  console.log({
+    username: username,
+    body: body,
+  });
+  return ncNewsApi
+    .post("/articles/" + articleId + "/comments", {
+      username: username,
+      body: body,
+    })
+    .then((response) => {
+      return response.data.comment;
+    });
+};

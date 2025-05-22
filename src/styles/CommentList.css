@@ -64,19 +64,18 @@
 
 .comment-card-vote-buttons {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 0.25rem;
 }
 
-.comment-card-button {
-  background-color: #e2e8f0;
+.comment-card-vote-buttons button {
+  padding: 0.4rem 0.8rem;
+  font-size: 1.2rem;
   border: none;
-  padding: 0.3rem 0.5rem;
-  border-radius: 0.5rem;
+  background: #475569;
+  border-radius: 5px;
   cursor: pointer;
-  font-size: 0.8rem;
-  color: #1e293b;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.2s;
 }
 
 .comment-card-button:hover {

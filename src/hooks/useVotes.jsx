@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import { patchArticleVotes } from "../api";
 
-function useVotes(initialVotes, articleId) {
+function useVotes(initialVotes, id, apiFunc) {
   const [votes, setVotes] = useState(initialVotes || 0);
   const [isVoting, setIsVoting] = useState(false);
   const [hasVoted, setHasVoted] = useState(false);
@@ -17,10 +16,10 @@ function useVotes(initialVotes, articleId) {
     setVotes((currVotes) => currVotes + increment);
     setHasVoted(true);
 
-    patchArticleVotes(articleId, increment)
-      .then()
+    apiFunc(id, increment)
       .catch(() => {
         setVotes((currVotes) => currVotes - increment);
+        setHasVoted(false);
         alert("Vote failed, please try again.");
       })
       .finally(() => {

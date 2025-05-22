@@ -1,14 +1,29 @@
 import "../styles/SingleArticle.css";
-
 import { useParams } from "react-router";
-import { getArticlebyArticleId, patchArticleVotes } from "../api";
+import { useState } from "react";
+import { getArticlebyArticleId, patchArticleVotes, postComment } from "../api";
 
 import CommentList from "./CommentList";
 import useLoading from "../hooks/useLoading";
 import useVotes from "../hooks/useVotes";
+import NewCommentModal from "./NewCommentModal";
 
 function SingleArticle() {
-  let { articleid } = useParams();
+  const { articleid } = useParams();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [newComments, setNewComments] = useState([]);
+
+  function handleNewComment(newComment) {
+    postComment(articleid, newComment)
+      .then((commentFromAPI) => {
+        setNewComments((curr) => [commentFromAPI, ...curr]);
+        setIsModalOpen(false);
+      })
+      .catch(() => {
+        alert("Failed to post comment. Try again.");
+      });
+  }
+
   const {
     isLoading,
     error,
@@ -17,7 +32,8 @@ function SingleArticle() {
 
   const { votes, vote, isVoting, hasVoted } = useVotes(
     article?.votes ?? 0,
-    article?.article_id ?? 0
+    article?.article_id ?? 0,
+    patchArticleVotes
   );
 
   if (isLoading) return <p>Loading article...</p>;
@@ -28,11 +44,9 @@ function SingleArticle() {
       <header className="single-article-main">
         <section className="single-article-data">
           <h1 className="single-article-title">{article.title}</h1>
-
           <figure className="single-article-img">
             <img src={article.article_img_url} alt={article.title} />
           </figure>
-
           <section className="single-article-body">
             <p>{article.body}</p>
           </section>
@@ -67,12 +81,28 @@ function SingleArticle() {
                 👎
               </button>
             </section>
+
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="article-new-comment-button"
+            >
+              New Comment
+            </button>
           </section>
         </aside>
       </header>
 
-      <section className="single-article-comments">
-        <CommentList articleid={articleid} />
+      <section>
+        {isModalOpen && (
+          <NewCommentModal
+            onClose={() => setIsModalOpen(false)}
+            onSubmit={handleNewComment}
+          />
+        )}
+
+        <section className="single-article-comments">
+          <CommentList articleid={articleid} newComments={newComments} />
+        </section>
       </section>
     </article>
   );

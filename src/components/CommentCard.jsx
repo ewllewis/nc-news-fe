@@ -1,4 +1,14 @@
+import useVotes from "../hooks/useVotes";
+
+import { patchCommentVotes } from "../api";
+
 function CommentCard({ comment }) {
+  const { votes, vote, isVoting, hasVoted } = useVotes(
+    comment?.votes ?? 0,
+    comment?.comment_id ?? 0,
+    patchCommentVotes
+  );
+
   return (
     <article className="comment-card">
       <section className="comment-card-data">
@@ -9,10 +19,14 @@ function CommentCard({ comment }) {
         <time className="comment-card-date" dateTime={comment.created_at}>
           {new Date(comment.created_at).toLocaleDateString()}
         </time>
-        <div className="comment-card-votes">Votes: {comment.votes}</div>
+        <div className="comment-card-votes">Votes: {votes}</div>
         <div className="comment-card-vote-buttons">
-          <button className="comment-card-button">Upvote</button>
-          <button className="comment-card-button">Downvote</button>
+          <button onClick={() => vote(1)} disabled={isVoting || hasVoted}>
+            👍
+          </button>
+          <button onClick={() => vote(-1)} disabled={isVoting || hasVoted}>
+            👎
+          </button>
         </div>
       </footer>
     </article>

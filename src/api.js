@@ -17,3 +17,11 @@ export const getArticlebyArticleId = (articleId) => {
     return response.data.article;
   });
 };
+
+export const getCommentsbyArticleId = (articleId) => {
+  return ncNewsApi
+    .get("/articles/" + articleId + "/comments/")
+    .then((response) => {
+      return response.data.comments;
+    });
+};

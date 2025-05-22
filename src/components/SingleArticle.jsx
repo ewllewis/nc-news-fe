@@ -2,6 +2,7 @@ import { useParams } from "react-router";
 import { getArticlebyArticleId } from "../api";
 import { useEffect, useState } from "react";
 import "../styles/SingleArticle.css";
+import CommentList from "./CommentList";
 
 function SingleArticle() {
   let { articleid } = useParams();
@@ -38,7 +39,7 @@ function SingleArticle() {
         </div>
       </div>
       <div className="single-article-comments">
-        <div>single-article-comments</div>
+        <CommentList articleid={articleid} />
       </div>
     </div>
   );

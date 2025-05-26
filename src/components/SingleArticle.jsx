@@ -7,9 +7,11 @@ import CommentList from "./CommentList";
 import useLoading from "../hooks/useLoading";
 import useVotes from "../hooks/useVotes";
 import NewCommentModal from "./NewCommentModal";
+import { useUser } from "../context/User";
 
 function SingleArticle() {
   const { articleid } = useParams();
+  const { loggedInUser, isLoggedIn } = useUser();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newComments, setNewComments] = useState([]);
 
@@ -72,22 +74,35 @@ function SingleArticle() {
                 <strong>Comments:</strong> {article.comment_count}
               </p>
             </div>
-
             <section className="article-actions">
-              <button onClick={() => vote(1)} disabled={isVoting || hasVoted}>
-                👍
-              </button>
-              <button onClick={() => vote(-1)} disabled={isVoting || hasVoted}>
-                👎
-              </button>
+              {!isLoggedIn ? (
+                <div className="login-reminder">
+                  Please login to vote or add comments
+                </div>
+              ) : (
+                <>
+                  <section className="article-actions-voting">
+                    <button
+                      onClick={() => vote(1)}
+                      disabled={isVoting || hasVoted}
+                    >
+                      👍
+                    </button>
+                    <button
+                      onClick={() => vote(-1)}
+                      disabled={isVoting || hasVoted}
+                    >
+                      👎
+                    </button>
+                  </section>
+                  <section className="article-actions-newcomment">
+                    <button onClick={() => setIsModalOpen(true)}>
+                      New Comment
+                    </button>
+                  </section>
+                </>
+              )}
             </section>
-
-            <button
-              onClick={() => setIsModalOpen(true)}
-              className="article-new-comment-button"
-            >
-              New Comment
-            </button>
           </section>
         </aside>
       </header>
@@ -97,6 +112,7 @@ function SingleArticle() {
           <NewCommentModal
             onClose={() => setIsModalOpen(false)}
             onSubmit={handleNewComment}
+            loggedInUser={loggedInUser}
           />
         )}
 

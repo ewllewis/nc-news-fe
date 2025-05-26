@@ -62,15 +62,29 @@
   font-weight: 500;
 }
 
-.comment-card-vote-buttons {
+.comment-card-actions {
   display: flex;
-  flex-direction: row;
-  gap: 0.25rem;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0.1rem;
+  background-color: white;
+  border-radius: 10px;
+  width: 150px;
 }
 
-.comment-card-vote-buttons button {
+.comment-card-delete,
+.comment-card-voting {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.2rem;
+  background-color: white;
+}
+
+.comment-card-actions button {
   padding: 0.4rem 0.8rem;
-  font-size: 1.2rem;
+  font-size: 1rem;
   border: none;
   background: #475569;
   border-radius: 5px;
@@ -78,6 +92,26 @@
   transition: background-color 0.2s;
 }
 
-.comment-card-button:hover {
-  background-color: #cbd5e1;
+.comment-card-delete button {
+  font-size: 0.75rem;
+  background: rgb(161, 3, 3);
+}
+
+.comment-card-actions button:hover {
+  background-color: #334155;
+}
+
+.login-reminder {
+  background-color: #f1f5f9ea;
+  color: #020d06;
+  padding: 0.75em 1.5em;
+  border: none;
+  border-radius: 0.5em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: "Segoe UI", sans-serif;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

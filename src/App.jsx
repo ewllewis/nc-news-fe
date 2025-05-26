@@ -7,18 +7,21 @@ import NavBar from "./components/NavBar";
 import Home from "./components/Home";
 import ArticleList from "./components/ArticleList";
 import SingleArticle from "./components/SingleArticle";
+import { UserProvider } from "./context/User";
 
 function App() {
   return (
-    <div className="app-container">
-      <Header />
-      <NavBar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/articles/:topic" element={<ArticleList />} />
-        <Route path="/article/:articleid" element={<SingleArticle />} />
-      </Routes>
-    </div>
+    <UserProvider>
+      <div className="app-container">
+        <Header />
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/articles/:topic" element={<ArticleList />} />
+          <Route path="/article/:articleid" element={<SingleArticle />} />
+        </Routes>
+      </div>
+    </UserProvider>
   );
 }
 

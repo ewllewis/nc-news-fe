@@ -10,20 +10,28 @@ function UserCard() {
 
   return (
     <div className="user-card-container">
-      <figure className="user-card-avatar-container">
+      <section className="user-card-avatar-container">
         {isLoggedIn ? (
-          <img src={loggedInUser.avatar_url} alt="user-icon" />
+          <img
+            src={loggedInUser.avatar_url}
+            alt={`${loggedInUser.username}'s avatar`}
+          />
         ) : (
-          <img src={defaultIcon} alt="user-icon" />
+          <img src={defaultIcon} alt="Default user icon" />
         )}
-      </figure>
-      <div className="user-card-username">
+      </section>
+      <section className="user-card-username">
         {isLoggedIn ? (
           "@" + loggedInUser.username
         ) : (
-          <button onClick={() => setShowModal(true)}>Login</button>
+          <button
+            onClick={() => setShowModal(true)}
+            aria-label="Open login modal"
+          >
+            Login
+          </button>
         )}
-      </div>
+      </section>
       {showModal && <UserLoginModal onClose={() => setShowModal(false)} />}
     </div>
   );

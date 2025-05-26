@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useUser } from "../context/User";
 import { getUserbyUsername } from "../api";
 
+import "../styles/UserLoginModal.css";
+
 function UserLoginModal({ onClose }) {
   const [username, setUsername] = useState("");
   const [errorMessage, setErrorMessage] = useState("");

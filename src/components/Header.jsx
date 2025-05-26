@@ -1,3 +1,5 @@
+import "../styles/Header.css";
+
 import logo from "../assets/logo.png";
 import UserCard from "./UserCard";
 
@@ -9,7 +11,9 @@ function Header() {
       <Link to="/">
         <img className="logo" src={logo} alt="NC News Logo" />
       </Link>
-      <UserCard />
+      <section className="header-usercard">
+        <UserCard />
+      </section>
     </header>
   );
 }

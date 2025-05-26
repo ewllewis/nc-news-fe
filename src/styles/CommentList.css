@@ -1,117 +1,119 @@
+p {
+  margin: 0;
+}
 .comment-list-container {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  width: 100%;
   padding: 1rem;
+  width: 100%;
+  max-width: 100%;
   box-sizing: border-box;
+  height: 100vh;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+  scroll-behavior: smooth;
 }
 
 .comment-card {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 0.75rem 1rem;
-  background-color: #f8fafc;
-  border: 1px solid #e2e8f0;
-  border-radius: 0.75rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 1rem;
-  align-items: start;
-}
-
-.comment-card-data {
   display: flex;
   flex-direction: column;
+  padding: 0.3rem;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 5px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  box-sizing: border-box;
   gap: 0.5rem;
-  min-width: 0;
+}
+
+.comment-card-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: #475569;
 }
 
 .comment-card-author {
-  font-weight: bold;
+  font-weight: 600;
   color: #1e293b;
-  font-size: 0.95rem;
-}
-
-.comment-card-body {
-  color: #334155;
-  font-size: 0.95rem;
-  line-height: 1.4;
-  word-break: break-word;
-}
-
-.comment-card-metadata {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: space-between;
-  font-size: 0.8rem;
-  color: #475569;
-  text-align: right;
-  height: 100%;
-  gap: 0.25rem;
 }
 
 .comment-card-date {
   color: #94a3b8;
+  font-style: italic;
 }
 
 .comment-card-votes {
+  font-size: 0.9rem;
   font-weight: 500;
+  color: black;
+}
+
+.comment-card-body {
+  font-size: 0.95rem;
+  color: #334155;
+  line-height: 1.5;
+  word-break: break-word;
 }
 
 .comment-card-actions {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.5rem;
   align-items: center;
-  margin-top: 0.1rem;
-  background-color: white;
-  border-radius: 10px;
-  width: 150px;
 }
 
-.comment-card-delete,
 .comment-card-voting {
   display: flex;
   flex-direction: row;
+  gap: 1rem;
   align-items: center;
-  gap: 0.5rem;
-  margin: 0.2rem;
-  background-color: white;
 }
 
-.comment-card-actions button {
+.comment-card-voting button {
   padding: 0.4rem 0.8rem;
   font-size: 1rem;
   border: none;
   background: #475569;
+  color: #ffffff;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.2s;
 }
 
-.comment-card-delete button {
-  font-size: 0.75rem;
-  background: rgb(161, 3, 3);
-}
-
-.comment-card-actions button:hover {
+.comment-card-voting button:hover:not(:disabled) {
   background-color: #334155;
 }
 
-.login-reminder {
-  background-color: #f1f5f9ea;
-  color: #020d06;
-  padding: 0.75em 1.5em;
+.comment-card-voting button:disabled {
+  background-color: #cbd5e1;
+  cursor: not-allowed;
+}
+
+.comment-card-delete button {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
   border: none;
+  background: #e11d48;
+  color: #ffffff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.comment-card-delete button:hover {
+  background-color: #be123c;
+}
+
+.login-reminder {
+  color: red;
+  padding: 0.4rem 0.8rem;
   border-radius: 0.5em;
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   font-weight: 600;
-  font-family: "Segoe UI", sans-serif;
   text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }

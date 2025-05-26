@@ -1,4 +1,4 @@
-import "../styles/articleGallery.css";
+import "../styles/ArticleGallery.css";
 
 import ArticleGalleryCard from "./ArticleGalleryCard";
 

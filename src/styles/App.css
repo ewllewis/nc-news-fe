@@ -1,6 +1,6 @@
-/* * {
+* {
   outline: 1px solid red !important;
-} */
+}
 
 .logo {
   height: 3rem;
@@ -23,17 +23,4 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.log-in-button {
-  background-color: #f1f5f9ea;
-  color: #020d06;
-  padding: 0.75em 1.5em;
-  border: none;
-  border-radius: 0.5em;
-  font-size: 1rem;
-  font-weight: 600;
-  font-family: "Segoe UI", sans-serif;
-  cursor: pointer;
-  transition: all 0.25s ease;
 }

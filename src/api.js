@@ -5,9 +5,13 @@ const ncNewsApi = axios.create({
 });
 
 export const getArticles = (searchTerm = {}) => {
+  console.log(searchTerm);
   return ncNewsApi
-    .get("/articles", { params: { topic: searchTerm.topic } })
+    .get("/articles", {
+      params: searchTerm,
+    })
     .then((response) => {
+      console.log("Fetched articles:", response.data.articles);
       return response.data.articles;
     });
 };

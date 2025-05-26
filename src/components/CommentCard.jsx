@@ -22,40 +22,37 @@ function CommentCard({ comment, onDelete }) {
 
   return (
     <article className="comment-card">
-      <section className="comment-card-data">
-        <header className="comment-card-author">@{comment.author}</header>
-        <p className="comment-card-body">{comment.body}</p>
-      </section>
-      <footer className="comment-card-metadata">
+      <header className="comment-card-header">
+        <p className="comment-card-author">@{comment.author}</p>
         <time className="comment-card-date" dateTime={comment.created_at}>
           {new Date(comment.created_at).toLocaleDateString()}
         </time>
-        <div className="comment-card-votes">Votes: {votes}</div>
-        <section className="comment-card-actions">
+      </header>
+
+      <p className="comment-card-body">{comment.body}</p>
+
+      <footer className="comment-card-actions">
+        <section className="comment-card-voting">
           {!isLoggedIn ? (
-            <div className="login-reminder">Please login to vote</div>
+            <div className="login-reminder">Login to vote</div>
           ) : (
             <>
-              <section className="comment-card-voting">
-                <button onClick={() => vote(1)} disabled={isVoting || hasVoted}>
-                  👍
-                </button>
-                <button
-                  onClick={() => vote(-1)}
-                  disabled={isVoting || hasVoted}
-                >
-                  👎
-                </button>
-              </section>
-
-              {comment.author === loggedInUser?.username && (
-                <section className="comment-card-delete">
-                  <button onClick={onDeleteButtonClick}>Delete comment</button>
-                </section>
-              )}
+              <button onClick={() => vote(1)} disabled={isVoting || hasVoted}>
+                👍
+              </button>
+              <button onClick={() => vote(-1)} disabled={isVoting || hasVoted}>
+                👎
+              </button>
             </>
-          )}
+          )}{" "}
+          <p className="comment-card-votes">Votes: {votes}</p>
         </section>
+
+        {comment.author === loggedInUser?.username && (
+          <section className="comment-card-delete">
+            <button onClick={onDeleteButtonClick}>Delete</button>
+          </section>
+        )}
       </footer>
     </article>
   );

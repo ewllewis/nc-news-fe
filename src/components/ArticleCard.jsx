@@ -1,3 +1,5 @@
+import "../styles/ArticleCard.css";
+
 function ArticleCard({ article }) {
   return (
     <article className="article-card">

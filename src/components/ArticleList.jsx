@@ -1,4 +1,4 @@
-import "../styles/articleList.css";
+import "../styles/ArticleList.css";
 import { useParams, Link, useSearchParams } from "react-router-dom";
 import { useMemo, useEffect, useState } from "react";
 

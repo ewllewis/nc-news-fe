@@ -43,71 +43,55 @@ function SingleArticle() {
 
   return (
     <article className="single-article-container">
-      <header className="single-article-main">
-        <section className="single-article-data">
+      <section className="single-article-main">
+        <section className="single-article-header">
           <h1 className="single-article-title">{article.title}</h1>
-          <figure className="single-article-img">
-            <img src={article.article_img_url} alt={article.title} />
-          </figure>
-          <section className="single-article-body">
-            <p>{article.body}</p>
+          <div className="single-article-metadata">
+            <p>#{article.topic}</p>
+            <p>{new Date(article.created_at).toLocaleDateString()}</p>
+            <p>@{article.author}</p>
+          </div>
+        </section>
+
+        <section className="single-article-votes-and-comments">
+          <section className="single-article-votes-and-comments-data">
+            <p>
+              <strong>Votes:</strong> {votes}
+            </p>
+            <p>
+              <strong>Comments:</strong> {article.comment_count}
+            </p>
+          </section>
+          <section className="single-article-actions">
+            {!isLoggedIn ? (
+              <div className="single-article-login-reminder">Login to vote</div>
+            ) : (
+              <>
+                <button onClick={() => vote(1)} disabled={isVoting || hasVoted}>
+                  👍
+                </button>
+                <button
+                  onClick={() => vote(-1)}
+                  disabled={isVoting || hasVoted}
+                >
+                  👎
+                </button>
+                <button onClick={() => setIsModalOpen(true)}>+ Comment</button>
+              </>
+            )}
           </section>
         </section>
 
-        <hr className="single-article-divider" />
+        <section className="single-article-img">
+          <img src={article.article_img_url} alt={article.title} />
+        </section>
 
-        <aside className="single-article-right">
-          <section className="single-article-metadata">
-            <p className="article-card-metadata">#{article.topic}</p>
-            <p className="article-card-metadata">
-              {new Date(article.created_at).toLocaleDateString()}
-            </p>
-            <p className="article-card-metadata">@{article.author}</p>
-          </section>
+        <section className="single-article-body">
+          <p>{article.body}</p>
+        </section>
+      </section>
 
-          <section className="single-article-votes-comments">
-            <div className="vote-comment-counts">
-              <p>
-                <strong>Votes:</strong> {votes}
-              </p>
-              <p>
-                <strong>Comments:</strong> {article.comment_count}
-              </p>
-            </div>
-            <section className="article-actions">
-              {!isLoggedIn ? (
-                <div className="login-reminder">
-                  Please login to vote or add comments
-                </div>
-              ) : (
-                <>
-                  <section className="article-actions-voting">
-                    <button
-                      onClick={() => vote(1)}
-                      disabled={isVoting || hasVoted}
-                    >
-                      👍
-                    </button>
-                    <button
-                      onClick={() => vote(-1)}
-                      disabled={isVoting || hasVoted}
-                    >
-                      👎
-                    </button>
-                  </section>
-                  <section className="article-actions-newcomment">
-                    <button onClick={() => setIsModalOpen(true)}>
-                      New Comment
-                    </button>
-                  </section>
-                </>
-              )}
-            </section>
-          </section>
-        </aside>
-      </header>
-
-      <section>
+      <section className="single-article-comments">
         {isModalOpen && (
           <NewCommentModal
             onClose={() => setIsModalOpen(false)}
@@ -116,9 +100,7 @@ function SingleArticle() {
           />
         )}
 
-        <section className="single-article-comments">
-          <CommentList articleid={articleid} newComments={newComments} />
-        </section>
+        <CommentList articleid={articleid} newComments={newComments} />
       </section>
     </article>
   );

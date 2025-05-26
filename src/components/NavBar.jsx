@@ -1,39 +1,72 @@
-import "../styles/navbar.css";
-
-import { Link } from "react-router";
+import "../styles/Navbar.css";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router";
 
 function NavBar() {
+  const [showTopics, setShowTopics] = useState(false);
+  const navigate = useNavigate();
+
+  function handleTopicClick(path) {
+    setShowTopics(false);
+    navigate(path);
+  }
+
   return (
-    <nav
-      className="nav-bar-wrapper"
-      role="navigation"
-      aria-label="Main navigation"
-    >
-      <hr className="horizontal-divider" />
-      <div className="nav-bar-container">
-        <div className="nav-bar-left-section">
-          <Link to="/articles/new">
-            <button className="nav-bar-button">New</button>
-          </Link>
-          <Link to="/articles/popular">
-            <button className="nav-bar-button">Popular</button>
-          </Link>
+    <>
+      {showTopics && (
+        <div
+          className="nav-overlay-backdrop"
+          onClick={() => setShowTopics(false)}
+        />
+      )}
+
+      <nav
+        className="nav-bar-wrapper"
+        role="navigation"
+        aria-label="Main navigation"
+      >
+        <div className="nav-bar-container">
+          <div className="nav-bar-left-section">
+            <Link to="/articles/new">
+              <button className="nav-bar-button">New</button>
+            </Link>
+            <Link to="/articles/popular">
+              <button className="nav-bar-button">Popular</button>
+            </Link>
+          </div>
+
+          <div className="nav-bar-right-section">
+            <button
+              className="nav-bar-button nav-toggle"
+              onClick={() => setShowTopics((prev) => !prev)}
+            >
+              Topics ▾
+            </button>
+
+            <div className={`nav-topics-dropdown ${showTopics ? "show" : ""}`}>
+              <button
+                onClick={() => handleTopicClick("/articles/coding")}
+                className="nav-bar-button"
+              >
+                #coding
+              </button>
+              <button
+                onClick={() => handleTopicClick("/articles/football")}
+                className="nav-bar-button"
+              >
+                #football
+              </button>
+              <button
+                onClick={() => handleTopicClick("/articles/cooking")}
+                className="nav-bar-button"
+              >
+                #cooking
+              </button>
+            </div>
+          </div>
         </div>
-        <div className="nav-divider" />
-        <div className="nav-bar-right-section">
-          <Link to="/articles/coding">
-            <button className="nav-bar-button">#coding</button>
-          </Link>
-          <Link to="/articles/football">
-            <button className="nav-bar-button">#football</button>
-          </Link>
-          <Link to="/articles/cooking">
-            <button className="nav-bar-button">#cooking</button>
-          </Link>
-        </div>
-      </div>
-      <hr className="horizontal-divider" />
-    </nav>
+      </nav>
+    </>
   );
 }
 

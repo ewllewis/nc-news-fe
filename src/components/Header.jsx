@@ -1,4 +1,5 @@
 import logo from "../assets/logo.png";
+import UserCard from "./UserCard";
 
 import { Link } from "react-router";
 
@@ -8,7 +9,7 @@ function Header() {
       <Link to="/">
         <img className="logo" src={logo} alt="NC News Logo" />
       </Link>
-      <button className="log-in-button">Log in</button>
+      <UserCard />
     </header>
   );
 }

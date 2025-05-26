@@ -43,10 +43,6 @@ export const patchCommentVotes = (articleId, voteIncrement) => {
 };
 
 export const postComment = (articleId, { username, body }) => {
-  console.log({
-    username: username,
-    body: body,
-  });
   return ncNewsApi
     .post("/articles/" + articleId + "/comments", {
       username: username,
@@ -55,4 +51,16 @@ export const postComment = (articleId, { username, body }) => {
     .then((response) => {
       return response.data.comment;
     });
+};
+
+export const getUserbyUsername = (username) => {
+  return ncNewsApi.get("/users/" + username).then((response) => {
+    return response.data.user;
+  });
+};
+
+export const deleteComment = (commentId) => {
+  return ncNewsApi.delete("/comments/" + commentId).then((response) => {
+    return;
+  });
 };

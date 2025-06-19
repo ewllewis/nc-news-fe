@@ -2,11 +2,18 @@ import "./styles/App.css";
 
 import { Route, Routes } from "react-router";
 
-import Header from "./components/Header";
-import NavBar from "./components/NavBar";
-import Home from "./components/Home";
-import ArticleList from "./components/ArticleList";
-import SingleArticle from "./components/SingleArticle";
+//components
+import Header from "./features/layout/Header";
+import NavBar from "./features/layout/NavBar";
+import Footer from "./features/layout/Footer";
+import TopicPage from "./pages/TopicPage";
+import ArticlePage from "./pages/ArticlePage";
+import AboutPage from "./pages/AboutPage";
+
+//pages
+import Home from "./pages/Home";
+
+//context
 import { UserProvider } from "./context/User";
 
 function App() {
@@ -17,9 +24,11 @@ function App() {
         <NavBar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/articles/:topic" element={<ArticleList />} />
-          <Route path="/article/:articleid" element={<SingleArticle />} />
+          <Route path="/articles/:topic" element={<TopicPage />} />
+          <Route path="/article/:articleid" element={<ArticlePage />} />
+          <Route path="/about" element={<AboutPage />} />
         </Routes>
+        <Footer />
       </div>
     </UserProvider>
   );

@@ -1,3 +1,22 @@
 /* * {
   outline: 1px solid red !important;
 } */
+
+.app-container {
+  max-width: 70%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: white;
+  border-color: grey;
+  box-shadow: 10px 10px 10px 10px rgba(0.1, 0.1, 0.1, 0.1);
+  box-sizing: border-box;
+  overflow-x: hidden;
+  border-radius: 20px;
+}
+
+@media (max-width: 520px) {
+  .app-container {
+    width: 100%;
+  }
+}

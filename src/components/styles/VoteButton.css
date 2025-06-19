@@ -1,0 +1,57 @@
+.vote-button-container {
+  /*alignment*/
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+
+  /*size*/
+  margin: 0;
+  min-width: 0;
+
+  /*border*/
+  border: 2px solid #1a1a1a;
+  border-radius: 8px;
+
+  /*fonts*/
+  font-size: 16px;
+  font-weight: 600;
+
+  background-color: white;
+  color: black;
+}
+
+.vote-button {
+  box-sizing: content-box;
+  background-color: white;
+  color: black;
+  border: 0px;
+  border-radius: 5px;
+
+  cursor: pointer;
+}
+
+.vote-button:disabled {
+  pointer-events: none;
+}
+
+.vote-button:hover {
+  color: white;
+  background-color: black;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+}
+
+.vote-button:active {
+  box-shadow: none;
+}
+
+.vote-button.upvoted {
+  color: rgb(11, 151, 11);
+}
+
+.vote-button.downvoted {
+  color: red;
+}
+
+.vote-button:disabled {
+  cursor: not-allowed;
+}

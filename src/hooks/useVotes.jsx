@@ -1,25 +1,25 @@
 import { useState, useEffect } from "react";
 
-function useVotes(initialVotes, id, apiFunc) {
-  const [votes, setVotes] = useState(initialVotes || 0);
+function useVotes(initialVotes = 0, id, apiFunc) {
+  const [votes, setVotes] = useState(initialVotes);
   const [isVoting, setIsVoting] = useState(false);
-  const [hasVoted, setHasVoted] = useState(false);
+  const [hasVoted, setHasVoted] = useState(0);
 
   useEffect(() => {
     setVotes(initialVotes);
   }, [initialVotes]);
 
   const vote = (increment) => {
-    if (hasVoted) return;
+    if (hasVoted === increment) return;
 
     setIsVoting(true);
     setVotes((currVotes) => currVotes + increment);
-    setHasVoted(true);
+    setHasVoted(increment);
 
     apiFunc(id, increment)
       .catch(() => {
         setVotes((currVotes) => currVotes - increment);
-        setHasVoted(false);
+        setHasVoted(0);
         alert("Vote failed, please try again.");
       })
       .finally(() => {

@@ -1,0 +1,20 @@
+.article-gallery {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.article-gallery::-webkit-scrollbar {
+  height: 8px;
+}
+
+.article-gallery::-webkit-scrollbar-thumb {
+  background-color: #94a3b8;
+  border-radius: 4px;
+}
+
+.article-gallery.vertical {
+  flex-direction: column;
+  max-width: 250px;
+}

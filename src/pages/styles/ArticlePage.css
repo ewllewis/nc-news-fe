@@ -1,0 +1,46 @@
+.article-page-container {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.article-and-comments {
+  display: flex;
+  flex-direction: column;
+  border-right: 2px solid #000000;
+  padding-right: 1rem;
+  flex: 2;
+  min-width: 300px;
+}
+
+.comment-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border-top: 2px solid #000000;
+  margin-top: 1rem;
+  padding-top: 1rem;
+}
+
+.related-articles {
+  flex: 1;
+  min-width: 20%;
+  max-width: 20%;
+}
+
+@media (max-width: 800px) {
+  .article-page-container {
+    flex-direction: column;
+  }
+
+  .related-articles {
+    order: 2; /* appear after comments */
+    max-width: 100%;
+  }
+
+  .article-and-comments {
+    order: 1;
+    border-right: 0px solid #000000;
+  }
+}

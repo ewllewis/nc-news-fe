@@ -1,0 +1,68 @@
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  color: black;
+  border-radius: 20px;
+  width: 400px;
+  max-width: 90%;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.modal-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.modal-inputs input,
+textarea,
+select {
+  font-size: 1rem;
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color: white;
+  color: black;
+  justify-content: flex-start;
+  font-family: "Times New Roman", Times, serif;
+  width: 95%;
+  margin-top: 0.3rem;
+}
+
+.modal-inputs input,
+select {
+  height: 2rem;
+}
+
+.modal-inputs textarea {
+  height: 4rem;
+}
+
+.modal-inputs select {
+  color: gray;
+  width: 30%;
+}
+
+.modal-action-buttons {
+  display: flex;
+  margin-top: 2rem;
+  gap: 1rem;
+}
+
+.error-message {
+  color: red;
+}

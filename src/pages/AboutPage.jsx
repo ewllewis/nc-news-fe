@@ -16,11 +16,12 @@ function AboutPage() {
       </p>
       <h3>Tech Stack</h3>
       <p>
-        Frontend: React (component-based UI, responsive design, deployed on
-        Render)
+        Frontend: React, component-based UI, responsive design, deployed on
+        Neflify
       </p>
       <p>
         Backend: Supabase hosted PostgreSQL database with RESTful API endpoints
+        deployed on Render.
       </p>
       <p>
         This project demonstrates my ability to build and deploy a full-stack

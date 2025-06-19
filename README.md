@@ -1,12 +1,53 @@
-# React + Vite
+# NC News Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React-based frontend for the Northcoders News project. This application allows users to browse news articles, filter by topic, view comment counts, and vote on articles. It connects to a RESTful API backend for all data interactions.
 
-Currently, two official plugins are available:
+## Hosted Version
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🌐 [NC News on Netflify](https://el-nc-news.netlify.app/)
 
-## Expanding the ESLint configuration
+## Summary
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+This frontend project was built as part of my JavaScript bootcamp at Northcoders, and serves as the user interface for interacting with the NC News API. It features:
+
+- Dynamic routing with React Router
+- Responsive and accessible UI
+- Integration with a Supabase-hosted RESTful backend
+- Real-time voting and article updates
+
+---
+
+## Tech Stack
+
+- React
+- React Router
+- Axios
+- Hosted on Netlify
+
+## Setup Instructions
+
+### Prerequisites
+
+- **Node.js8**: v14 or higher
+- **npm**: v6 or higher
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/ewllewis/nc-news-fe.git
+cd nc-news-fe
+```
+
+### 2. Install Dependencies
+
+```bash
+npm install
+```
+
+### 3. Run the App Locally
+
+```bash
+npm run dev
+```
+
+This will start the development server, usually at http://localhost:5173 (if using Vite).
